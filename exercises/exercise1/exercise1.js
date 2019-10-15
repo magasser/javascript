@@ -24,6 +24,5 @@ function convertToMorseCode(input) {
 	return res;
 }
 
-
 console.log(charToMorseCode('q'));
 console.log(convertToMorseCode('Hello i am a guy. #'));

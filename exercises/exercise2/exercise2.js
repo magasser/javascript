@@ -14,10 +14,22 @@ function Font(name, chars) {
   this.chars = chars;
 }
 
+function createMap(alphabetString) {
+  var chars = alphabetString.split(';');
+  var charMap = [];
+
+  chars.forEach(function(item) {
+    var res = item.split('=');
+    charMap[res[0]] = new Char(res[0], res[1]);
+  });
+
+  return charMap;
+}
+
 Font.prototype.render = function (text) {
   var res = '';
   that = this;
-  
+
   text.split('').forEach(function(l) {
     if(that.chars[l] === undefined) {
       res += '?'
@@ -33,17 +45,3 @@ Font.prototype.write = function(text, to) {
   to = to || console.log;
   to(this.render(text));
 }
-
-var chars = alphabetString.split(';');
-var charMap = [];
-
-chars.forEach(function(item) {
-  var res = item.split('=');
-  charMap[res[0]] = new Char(res[0], res[1]);
-});
-
-var morse = new Font('morse', charMap);
-
-morse.write('hello world');
-
-console.log('Done!');
